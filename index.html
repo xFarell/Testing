@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio | Web Developer</title>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: #1a1a2e;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e0e0e0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #1a1a2e;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        .menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            flex-wrap: wrap;
+            padding-top: 80px;
+        }
+        .hero-content {
+            flex: 1;
+            animation: fadeInUp 0.8s ease;
+        }
+        .hero-content .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea20, #764ba220);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .hero-content h1 span {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero-content p {
+            color: #555;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .stat h3 {
+            font-size: 1.5rem;
+            color: #667eea;
+        }
+        .stat p {
+            font-size: 0.8rem;
+            margin: 0;
+        }
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102,126,234,0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102,126,234,0.4);
+        }
+        .btn-outline {
+            border: 2px solid #667eea;
+            color: #667eea;
+        }
+        .btn-outline:hover {
+            background: #667eea;
+            color: white;
+        }
+        .hero-image {
+            flex: 1;
+            text-align: center;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .placeholder-avatar {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            color: white;
+            font-size: 5rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+        }
+        .skill-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .skill-card i {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        .skill-card h4 {
+            margin-top: 0.5rem;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .project-img {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        .project-info {
+            padding: 1.5rem;
+        }
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        .project-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .tag {
+            background: #f0f0f0;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: #667eea;
+        }
+
+        /* Contact */
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            min-width: 200px;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #1a1a2e;
+        }
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .contact-card i {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: #1a1a2e;
+            color: #888;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: left 0.3s;
+                gap: 2rem;
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 100px;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Portofolio.</div>
+            <div class="menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Proyek</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero container">
+            <div class="hero-content">
+                <span class="badge">👋 Halo, Saya</span>
+                <h1>R. Syailindra<br><span>Alfarraiel</span></h1>
+                <p>Seorang pengembang web yang bersemangat menciptakan pengalaman digital yang elegan dan fungsional. Saya membantu bisnis lokal hadir di dunia digital.</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <h3>5+</h3>
+                        <p>Proyek Selesai</p>
+                    </div>
+                    <div class="stat">
+                        <h3>2+</h3>
+                        <p>Tahun Pengalaman</p>
+                    </div>
+                    <div class="stat">
+                        <h3>100%</h3>
+                        <p>Kepuasan Klien</p>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <a href="#projects" class="btn btn-primary"><i class="fas fa-eye"></i> Lihat Proyek</a>
+                    <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> Hubungi Saya</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="placeholder-avatar">
+                    <i class="fas fa-code"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title">Keahlian Saya</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i class="fab fa-html5"></i>
+                        <h4>HTML5</h4>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-css3-alt"></i>
+                        <h4>CSS3</h4>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-js"></i>
+                        <h4>JavaScript</h4>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-wordpress"></i>
+                        <h4>WordPress</h4>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-figma"></i>
+                        <h4>Figma</h4>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h4>Responsive</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">Proyek Terbaru</h2>
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Projects will be inserted via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Hubungi Saya</h2>
+                <div class="contact-container">
+                    <a href="mailto:syailindra@example.com" class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Email</h4>
+                        <p>syailindra@example.com</p>
+                    </a>
+                    <a href="https://wa.me/6281234567890" target="_blank" class="contact-card">
+                        <i class="fab fa-whatsapp"></i>
+                        <h4>WhatsApp</h4>
+                        <p>+62 812-3456-7890</p>
+                    </a>
+                    <a href="https://github.com/syailindra" target="_blank" class="contact-card">
+                        <i class="fab fa-github"></i>
+                        <h4>GitHub</h4>
+                        <p>/syailindra</p>
+                    </a>
+                    <a href="https://linkedin.com/in/syailindra" target="_blank" class="contact-card">
+                        <i class="fab fa-linkedin"></i>
+                        <h4>LinkedIn</h4>
+                        <p>/in/syailindra</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 R. Syailindra Alfarraiel. Dibuat dengan <i class="fas fa-heart" style="color: #667eea;"></i> untuk berbagi karya.</p>
+    </footer>
+
+    <script>
+        // Toggle mobile menu
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Projects data
+        const projects = [
+            {
+                icon: 'fas fa-store',
+                title: 'Website UMKM',
+                description: 'Website company profile untuk bisnis lokal dengan desain modern dan responsif.',
+                tags: ['HTML', 'CSS', 'JS', 'Responsive']
+            },
+            {
+                icon: 'fas fa-laptop-code',
+                title: 'Portofolio Developer',
+                description: 'Website portofolio pribadi yang elegan untuk menampilkan karya dan keahlian.',
+                tags: ['HTML', 'CSS', 'JavaScript']
+            },
+            {
+                icon: 'fas fa-shopping-cart',
+                title: 'Landing Page Product',
+                description: 'Landing page untuk produk digital dengan konversi tinggi dan animasi menarik.',
+                tags: ['Landing Page', 'Animasi', 'SEO']
+            },
+            {
+                icon: 'fas fa-blog',
+                title: 'Blog Personal',
+                description: 'Tema blog minimalis dengan fokus pada keterbacaan dan pengalaman pengguna.',
+                tags: ['WordPress', 'Custom Theme']
+            },
+            {
+                icon: 'fas fa-calendar-alt',
+                title: 'Event Organizer',
+                description: 'Website informasi event dengan fitur pendaftaran online sederhana.',
+                tags: ['Form', 'API', 'Responsive']
+            },
+            {
+                icon: 'fas fa-coffee',
+                title: 'Cafe Website',
+                description: 'Website cafe dengan menu digital, galeri, dan peta lokasi interaktif.',
+                tags: ['Google Maps', 'Gallery']
+            }
+        ];
+
+        // Render projects
+        const projectsGrid = document.getElementById('projectsGrid');
+        if (projectsGrid) {
+            projects.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card';
+                projectCard.innerHTML = `
+                    <div class="project-img">
+                        <i class="${project.icon}"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>${project.title}</h3>
+                        <p>${project.description}</p>
+                        <div class="project-tags">
+                            ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                projectsGrid.appendChild(projectCard);
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255,255,255,0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'rgba(255,255,255,0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
+            }
+        });
+    </script>
+</body>
+</html>
